@@ -1,0 +1,11 @@
+create folder and file 
+
+New-Item -ItemType Directory -Path "flaskr/templates/auth", "flaskr/templates/blog", "flaskr/static", "tests"
+New-Item -ItemType File -Path "flaskr/__init__.py", "flaskr/db.py", "flaskr/schema.sql", "flaskr/auth.py", "flaskr/blog.py", "flaskr/static/style.css"
+New-Item -ItemType File -Path "tests/conftest.py", "tests/data.sql", "pyproject.toml", "MANIFEST.in", ".gitignore"
+
+
+run 
+flask --app flaskr run --debug
+
+flask --app flaskr init-db
