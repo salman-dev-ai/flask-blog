@@ -73,7 +73,7 @@ def login():
         user = db.execute(
             "SELECT * FROM user WHERE username = ?", (username,)
         ).fetchone()
-        
+
         # Verify credentials
         if user is None:
             error = "Incorrect username."
@@ -86,14 +86,14 @@ def login():
             session["user_id"] = user["id"]
             # Redirect to the main index page of the application
             return redirect(url_for("index"))
-            
+
         flash(error)
 
     # FIX: Corrected from redirect() to render_template() to properly display the login page
     return render_template("auth/login.html")
 
 
-# FIX: Changed from @bp.before_request to @bp.before_app_request 
+# FIX: Changed from @bp.before_request to @bp.before_app_request
 # This ensures it runs before ANY request to the application, not just within this blueprint
 @bp.before_app_request
 def load_logged_in_user():
@@ -121,12 +121,14 @@ def login_required(view):
     A custom decorator/middleware to protect routes from unauthenticated users.
     Redirects anonymous visitors to the login page.
     """
+
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
             # Block unauthorized access and redirect to the login screen
-            return redirect(url_for('auth.login'))
-        
+            return redirect(url_for("auth.login"))
+
         # Proceed to the requested view if the user is authenticated
         return view(**kwargs)
+
     return wrapped_view
