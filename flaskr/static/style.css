@@ -1,26 +1,278 @@
-html { font-family: sans-serif; background: #eee; padding: 1rem; }
-body { max-width: 960px; margin: 0 auto; background: white; }
-h1 { font-family: serif; color: #377ba8; margin: 1rem 0; position: top; }
-a { color: #377ba8; }
-hr { border: none; border-top: 1px solid lightgray; }
-nav { background: lightgray; display: flex; align-items: center; padding: 0 0.5rem; }
-nav h1 { flex: auto; margin: 0; }
-nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
-nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
-nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
-.content { padding: 0 1rem 1rem; }
-.content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
-.content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
-.flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
-.post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
-.post > header > div:first-of-type { flex: auto; }
-.post > header h1 { font-size: 1.5em; margin-bottom: 0; }
-.post .about { color: slategray; font-style: italic; } 
-.post .body { white-space: pre-line; }
-.content:last-child { margin-bottom: 0; }
-.content form { margin: 1em 0; display: flex; flex-direction: column; }
-.content label { font-weight: bold; margin-bottom: 0.5em; }
-.content input, .content textarea { margin-bottom: 1em; }
-.content textarea { min-height: 12em; resize: vertical; }
-input.danger { color: #cc2f2e; }
-input[type=submit] { align-self: start; min-width: 10em; }
+/* ----------------------------------------------------
+   FACEBOOK THEME - FULLY COMPATIBLE WITH FLASKR THEME
+---------------------------------------------------- */
+:root {
+    --fb-blue: #1877F2;          /* Classic Facebook Blue */
+    --fb-bg: #F0F2F5;            /* Soft light grey background */
+    --fb-white: #FFFFFF;         /* Card background */
+    --fb-text-main: #050505;     /* Dark bold text */
+    --fb-text-sub: #65676B;      /* Muted text for dates */
+    --fb-border: #CED0D4;        /* Subtle border lines */
+    --fb-hover: #E4E6EB;         /* Hover color */
+    --fb-danger: #E41E3F;        /* Red for delete actions */
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background: var(--fb-bg); 
+}
+
+body { 
+    max-width: 960px; 
+    margin: 0 auto; 
+    background: var(--fb-bg); /* Fluid gray layout just like FB Feed */
+}
+
+a { 
+    color: var(--fb-blue); 
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------------------------------------
+   Top Navigation Bar
+---------------------------------------------------- */
+nav { 
+    background: var(--fb-white); 
+    display: flex; 
+    align-items: center; 
+    padding: 0 1rem; 
+    height: 56px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h1 { 
+    flex: auto; 
+    margin: 0; 
+    font-family: -apple-system, sans-serif;
+    font-weight: 800;
+}
+
+nav h1 a { 
+    color: var(--fb-blue);
+    font-size: 24px;
+    padding: 0.25rem 0.5rem; 
+}
+
+nav ul { 
+    display: flex; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    align-items: center;
+    gap: 8px;
+}
+
+nav ul li a, nav ul li span, header .action { 
+    display: block; 
+    padding: 0.5rem 0.75rem; 
+    color: var(--fb-text-sub);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Base style for buttons like "New" and login headers */
+header .action, nav ul li a {
+    background-color: var(--fb-hover);
+    color: var(--fb-text-main);
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+header .action:hover, nav ul li a:hover {
+    background-color: #D8DADF;
+    text-decoration: none;
+}
+
+/* ----------------------------------------------------
+   Main Layout Container
+---------------------------------------------------- */
+.content { 
+    max-width: 680px; /* Perfect feed width */
+    margin: 20px auto;
+    padding: 0 1rem 1rem; 
+}
+
+.content > header { 
+    border-bottom: 1px solid var(--fb-border); 
+    display: flex; 
+    align-items: flex-end; 
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.content > header h1 { 
+    flex: auto; 
+    margin: 1rem 0 0.25rem 0; 
+    font-family: -apple-system, sans-serif;
+    color: var(--fb-text-main);
+    font-weight: 700;
+    font-size: 24px;
+}
+
+/* Flash alerts / Notifications system */
+.flash { 
+    margin: 1em 0; 
+    padding: 1em; 
+    background: #FFEBEB; 
+    border: 1px solid var(--fb-danger); 
+    border-left: 4px solid var(--fb-danger);
+    color: var(--fb-danger);
+    border-radius: var(--radius);
+    font-weight: 500;
+}
+
+/* ----------------------------------------------------
+   The Blog Feed Cards (Facebook Posts)
+---------------------------------------------------- */
+.post {
+    background-color: var(--fb-white);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.post > header { 
+    display: flex; 
+    align-items: flex-start; 
+    font-size: 0.85em; 
+    border-bottom: 1px solid #F0F2F5;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.post > header > div:first-of-type { 
+    flex: auto; 
+}
+
+.post > header h1 { 
+    font-size: 18px; 
+    margin-bottom: 4px; 
+    font-family: -apple-system, sans-serif;
+    color: var(--fb-text-main);
+    font-weight: 700;
+}
+
+.post .about { 
+    color: var(--fb-text-sub); 
+    font-style: normal; 
+    font-size: 13px;
+}
+
+.post .body { 
+    white-space: pre-line; 
+    font-size: 15px;
+    color: var(--fb-text-main);
+    line-height: 1.6;
+}
+
+/* Hide the old default line breaks since cards act as separators */
+hr { 
+    display: none; 
+}
+
+/* ----------------------------------------------------
+   Forms (Create / Edit) & Buttons
+---------------------------------------------------- */
+.content form { 
+    background: var(--fb-white);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 1em 0; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.content label { 
+    font-weight: 600; 
+    margin-bottom: 0.5em; 
+    color: var(--fb-text-sub);
+    font-size: 14px;
+}
+
+.content input, .content textarea { 
+    margin-bottom: 1em; 
+    padding: 12px;
+    border: 1px solid var(--fb-border);
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #F0F2F5;
+    outline: none;
+    font-family: inherit;
+}
+
+.content input:focus, .content textarea:focus {
+    border-color: var(--fb-blue);
+    background-color: var(--fb-white);
+    box-shadow: 0 0 0 2px #E7F3FF;
+}
+
+.content textarea { 
+    min-height: 8em; 
+    resize: vertical; 
+}
+
+/* Style for Submit Buttons (Save / Create) */
+input[type=submit]:not(.danger) { 
+    align-self: start; 
+    min-width: 10em; 
+    background-color: var(--fb-blue);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    padding: 10px 16px;
+    margin-top: 4px;
+    transition: background 0.2s;
+}
+
+input[type=submit]:not(.danger):hover {
+    background-color: #166FE5;
+}
+
+/* Style for Delete Danger Button */
+input.danger { 
+    background: transparent;
+    color: var(--fb-danger);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 13px;
+    box-shadow: none;
+    margin: 0;
+}
+
+input.danger:hover {
+    text-decoration: underline;
+}
+
+.content:last-child { 
+    margin-bottom: 0; 
+}
+
+/* Integrated layout from your custom sectionUser class */
+.ectionUser {
+    width: 10px;
+    flex: auto;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    flex-direction: row;
+}
