@@ -104,7 +104,7 @@ def get_post(id, check_author=True):
 def update(id):
     """Update and delete blog"""
     post = get_post(id)
-    if request.method == ["POST"]:
+    if request.method == "POST":
         title = request.form["title"]
         body = request.form["body"]
         error = None
@@ -116,12 +116,14 @@ def update(id):
         else:
             db = get_db()
             db.execute(
-                "UPDATE post SET title= ?, body=?" "WHERE id = ?", (title, body, id)
+                "UPDATE post SET title = ?, body = ?" "WHERE id = ?", (title, body, id)
             )
             db.commit()
-            return redirect(url_for("blog.index"))
 
-    return render_template(url_for("blog/update.html", post=post))
+            return redirect(url_for("blog.index"))
+    
+
+    return render_template("blog/update.html", post=post)
 
 
 @bp.route("/<int:id>/delete", methods=("POST",))
@@ -129,8 +131,6 @@ def update(id):
 def delete(id):
     get_post(id)
     db = get_db()
-    db.execute("DELETE FROM posts WHERE id = ?", (id,))
+    db.execute("DELETE FROM post WHERE id = ?", (id,))
     db.commit()
     return redirect(url_for("blog.index"))
-
-

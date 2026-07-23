@@ -25,9 +25,7 @@ def create_app(test_config=None):
     os.makedirs(app.instance_path, exist_ok=True)
 
     # a simple page that says hello
-    @app.route("/hello")
-    def hello():
-        return "Hello, World!"
+ 
 
     db.init_app(app)
 
@@ -35,6 +33,9 @@ def create_app(test_config=None):
     # Since no url_prefix is specified here, its internal routes (like /register and /login)
     # will be accessible directly at the root level of the application.
     app.register_blueprint(auth.bp)
+
+    from . import blog
+    app.register_blueprint(blog.bp)
 
     # Explicitly link the plain endpoint name 'index' to the root URL ('/').
     # This acts as an alias, ensuring that both url_for('index') used in the auth module
