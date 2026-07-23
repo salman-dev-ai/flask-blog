@@ -10,13 +10,13 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        SECRET_KEY="dev",
+        DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
     )
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
+        app.config.from_pyfile("config.py", silent=True)
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
@@ -25,14 +25,20 @@ def create_app(test_config=None):
     os.makedirs(app.instance_path, exist_ok=True)
 
     # a simple page that says hello
-    @app.route('/hello')
+    @app.route("/hello")
     def hello():
-        return 'Hello, World!'
+        return "Hello, World!"
 
     db.init_app(app)
 
-
-
+    # Register the authentication blueprint with the application.
+    # Since no url_prefix is specified here, its internal routes (like /register and /login)
+    # will be accessible directly at the root level of the application.
     app.register_blueprint(auth.bp)
+
+    # Explicitly link the plain endpoint name 'index' to the root URL ('/').
+    # This acts as an alias, ensuring that both url_for('index') used in the auth module
+    # and url_for('blog.index') generate the exact same root URL path.
+    app.add_url_rule("/", endpoint="index")
 
     return app
