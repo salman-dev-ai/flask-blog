@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.md">🌐 Language: English (الإنجليزية)</a>
+  <a href="README.md">🌐 English</a>
 </p>
 
 <h1 align="center">
