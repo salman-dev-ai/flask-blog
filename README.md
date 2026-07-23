@@ -427,9 +427,6 @@ name = "flaskr"  # Tells Flit: "package 'flaskr/', publish as 'faceblog'"
 
 ## 📸 Visual Showcase
 
-> **Note:** Screenshots are auto-captured and stored in the `flaskr/static/img/` directory.
-> Replace the placeholder filenames below with your actual screenshots.
-
 ### 📰 Main Post Feed
 The Facebook-inspired card-based feed layout displaying all blog posts with author information and timestamps.
 
@@ -451,8 +448,6 @@ The content creation and editing forms, featuring Facebook-styled input fields a
   <img src="flaskr/static/img/img (3).png" alt="FaceBlog Create/Edit Post — Content management forms" width="80%" />
 </p>
 
-### 🧪 Pytest 100% Coverage Report
-Automated test suite achieving complete code coverage across the entire application.
 
 <p align="center">
   <img src="flaskr/static/img/img (4).png" alt="Pytest Coverage Report — 100% code coverage verification" width="80%" />
@@ -635,7 +630,6 @@ faceblog/                              # Project root (published as 'faceblog')
 
 ## 👨‍💻 Author & License
 
-**FaceBlog** was engineered and documented by **Salman Soft** (مهندس سلمان سوفت) — a passionate software engineer and mentor dedicated to crafting production-grade educational resources for the Python and Flask community.
 
 | Detail | Information |
 |--------|-------------|
