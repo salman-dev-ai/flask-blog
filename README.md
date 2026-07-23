@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README_AR.md">🌐 (العربية)</a>
+  <a href="README_AR.md">🌐 العربية</a>
 </p>
 
 <h1 align="center">
@@ -640,7 +640,7 @@ faceblog/                              # Project root (published as 'faceblog')
 | Detail | Information |
 |--------|-------------|
 | **Author** | Eng-Salman Soft   |
-| **Role** | Lead Engineer & Full-Stack Mentor |
+| **Role** |  Full-Stack |
 | **License** | MIT License — Free for personal and commercial use |
 | **Repository** | [github.com/salman-dev-ai/flask-blog](https://github.com/salman-dev-ai/flask-blog) |
 | **Built With** | ❤️ Python 3, Flask 3.0, SQLite, Waitress, Pytest, Flit |
